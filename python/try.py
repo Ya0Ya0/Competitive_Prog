@@ -1,0 +1,1 @@
+print("Sentiment(polarity=0.2, subjectivity=0.7)")

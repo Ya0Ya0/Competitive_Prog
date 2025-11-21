@@ -1,0 +1,16 @@
+[
+    {
+        "tool_name": "google_search",
+        "method_name": "search",
+        "params": {
+            "query": "difference between real and fake honey with pictures"
+        },
+        "output": [
+            {
+                "snippet": "...",
+                "source_title": "...",
+                "url": "..."
+            }
+        ]
+    }
+]

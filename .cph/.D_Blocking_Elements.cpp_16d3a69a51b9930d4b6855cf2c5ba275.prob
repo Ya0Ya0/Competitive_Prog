@@ -1,0 +1,1 @@
+{"name":"D. Blocking Elements","url":"https://codeforces.com/contest/1918/problem/D","interactive":false,"memoryLimit":0,"timeLimit":3000,"group":"Codeforces - Codeforces Round 922 (Div. 2)","tests":[{"id":1754933825437,"input":"3\n6\n1 4 5 3 3 2\n5\n1 2 3 4 5\n6\n4 1 6 3 10 7\n","output":"7\n5\n11\n"}],"srcPath":"c:\\codigos\\c++\\D_Blocking_Elements.cpp"}
