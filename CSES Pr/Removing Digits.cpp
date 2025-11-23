@@ -38,7 +38,23 @@ void Solve()
 {
     int n; 
     cin >> n;
-    read(ent,n);
+    // read(ent,n);
+    vector<int>dp(n+5,n+50);
+    dp[0] = 0;
+    for(int i =0;i <= n;i++)
+    {
+        int cur= i;
+        while(cur)
+        {
+            int d = cur%10;
+            if(i - d >= 0)
+            {
+                dp[i] = min(dp[i],dp[i-d] + 1);
+            }
+            cur/=10;
+        }
+    }
+    cout << dp[n];
 }
 
 int main()
