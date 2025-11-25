@@ -34,6 +34,7 @@ long long elevar(long long a, long long b)
     }
     return r;
 }
+const int mod = 1e9 +7;
 void Solve()
 {
     int n; 

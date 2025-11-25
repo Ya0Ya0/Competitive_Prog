@@ -4,7 +4,7 @@ using namespace std;
 #define pq priority_queue<pair<ll, pair<ll, ll>>, vector<pair<ll, pair<ll, ll>>>, greater<pair<ll, pair<ll, ll>>>>
 #define all(x) x.begin(), x.end()
 
-#define read(name, cnt) vector<ll>name(cnt);for(auto &e : name)cin >> e;
+#define read(name, cnt) vector<int>name(cnt);for(auto &e : name)cin >> e;
 struct custom_hash
 {
     static uint64_t splitmix64(uint64_t x)
@@ -34,11 +34,29 @@ long long elevar(long long a, long long b)
     }
     return r;
 }
+const int mod = 1e9 +7;
 void Solve()
 {
-    int n; 
-    cin >> n;
-    read(ent,n);
+    int n,x; 
+    cin >> n >> x;
+    
+    read(cost,n);
+    read(pag,n);
+    vector<int>dp(x+5);
+    dp[0] = 0;
+    int mx = 0;
+    for(int i =0;i < n;i++)
+    {
+        for(int j = x;j>=cost[i];j--)
+        {
+            if(dp[j - cost[i]]!= -1)
+            {
+                dp[j] = max(dp[j - cost[i]] + pag[i], dp[j]);
+                mx = max(dp[j],mx);
+            }
+        }
+    }
+    cout << mx;
 }
 
 int main()
@@ -48,7 +66,7 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tt = 1;
-    cin >> tt;
+    // cin >> tt;
     while (tt--)
     {
         Solve();

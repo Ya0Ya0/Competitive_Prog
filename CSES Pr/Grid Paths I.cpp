@@ -34,11 +34,29 @@ long long elevar(long long a, long long b)
     }
     return r;
 }
+const int mod = 1e9 +7;
 void Solve()
 {
     int n; 
     cin >> n;
-    read(ent,n);
+    // read(ent,n);
+    vector<string>v(n);
+    for(auto &e : v)cin >> e;
+    vector<vector<int>>dp(n,vector<int>(n));
+    if(v[0][0]!='*')dp[0][0] = 1;
+    for(int i =0;i < n;i++)
+    {
+        for(int j =0;j < n;j++)
+        {
+            if(v[i][j] != '*')
+            {
+                if(i-1 >= 0 )dp[i][j]+=dp[i-1][j];
+                if(j - 1 >= 0)dp[i][j]+=dp[i][j-1];
+                dp[i][j] %= mod;
+            }
+        }
+    }
+    cout << dp[n-1][n-1];
 }
 
 int main()
@@ -48,7 +66,7 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tt = 1;
-    cin >> tt;
+    // cin >> tt;
     while (tt--)
     {
         Solve();

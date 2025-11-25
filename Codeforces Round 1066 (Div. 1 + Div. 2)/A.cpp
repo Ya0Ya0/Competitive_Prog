@@ -39,6 +39,16 @@ void Solve()
     int n; 
     cin >> n;
     read(ent,n);
+    map<ll,ll>mp;
+    for(auto e : ent)mp[e]++;
+    ll ans =0;
+    for(auto [a,b] : mp)
+    {
+        if(b >=  a)ans+=b-a;
+        else ans+=b;
+        
+    }
+    cout << ans <<"\n";
 }
 
 int main()
@@ -48,7 +58,7 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tt = 1;
-    // cin >> tt;
+    cin >> tt;
     while (tt--)
     {
         Solve();

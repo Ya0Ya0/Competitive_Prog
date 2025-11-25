@@ -4,7 +4,10 @@ using namespace std;
 #define pq priority_queue<pair<ll, pair<ll, ll>>, vector<pair<ll, pair<ll, ll>>>, greater<pair<ll, pair<ll, ll>>>>
 #define all(x) x.begin(), x.end()
 
-#define read(name, cnt) vector<ll>name(cnt);for(auto &e : name)cin >> e;
+#define read(name, cnt)   \
+    vector<ll> name(cnt); \
+    for (auto &e : name)  \
+        cin >> e;
 struct custom_hash
 {
     static uint64_t splitmix64(uint64_t x)
@@ -36,15 +39,32 @@ long long elevar(long long a, long long b)
 }
 void Solve()
 {
-    int n; 
-    cin >> n;
-    read(ent,n);
+    ll n, x, y;
+    cin >> n >> x >> y;
+    string s;cin >> s;
+    ll fr = 0, ei = 0;
+    for (auto e : s)
+        if (e == '4')
+            fr++;
+        else
+            ei++;
+    x = abs(x), y = abs(y);
+    x = max(0LL, x - ei);
+    y = max(0LL, y - ei);
+    if (x + y <= fr)
+    {
+        cout << "Yes\n";
+    }
+    else
+    {
+        cout << "No\n";
+    }
 }
 
 int main()
 {
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
+    // freopen("input.txt", "r", stdin);
+    // freopen("output.txt", "w", stdout);
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tt = 1;

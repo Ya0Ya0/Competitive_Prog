@@ -36,9 +36,33 @@ long long elevar(long long a, long long b)
 }
 void Solve()
 {
-    int n; 
-    cin >> n;
+    ll n,l,r; 
+    cin >> n >> l >> r;
     read(ent,n);
+    ll ans =0;
+    sort(all(ent));
+    ll ini = 0,end = n-1;
+    ll bl = 0,br = 0;
+    while(ent[ini] < l && ini < n)
+    {
+        ans += l - ent[ini];
+        ent[ini] = l;
+        ini++;
+    }
+    while(ent[end] > r && end >= 0)
+    {        
+        
+        ans+= ent[end]-r;
+        ent[end] = r;
+        end--;
+    }
+    
+    for(int i = 0;i < n/2;i++)
+    {
+        ans+= ent[n-1-i] - ent[i];        
+    }
+    cout << ans <<"\n";
+
 }
 
 int main()
