@@ -37,54 +37,20 @@ long long elevar(long long a, long long b)
     }
     return r;
 }
+
 void Solve()
 {
-    int n;
-    cin >> n;
-    // read(ent,n);
-    vector<bool> vis(n + 5);
-    ll coins = 0;
-    vector<pair<ll, ll>> mis;
-    ll cur = 70;
-    ll val = cur;
-    for (ll i = 1; i <= 18; i++)
-    {
-        if ((cur / val) > n)
-            break;
-
-        for (int k = 1; k < val; k++)
-        {
-            mis.push_back({n + 1, 1});
-            coins += 1000;
-            for (ll j = n - 1; j > 0; j--)
-            {
-
-                if ((j % cur == cur * k / val))
-                {
-
-                    mis.push_back({j, min(cur / val, n - j)});
-                    coins += min(cur / val, n - j);
-                }
-            }
-        }
-        cur *= val;
-    }
     
-    coins -= 1000;
-
-    while (mis.back().first == n + 1)
+    string s;
+    cin >> s;
+    while(s.size() > 1)
     {
-        mis.pop_back();
-        coins -= 1000;
+        ll cur =0;
+        for(auto c : s)cur+=c - '0';
+        s = to_string(cur);
     }
-    cout << mis.size() << "\n";
-    // for (auto [a, b] : mis)
-    // {
-    //     cout << a << " " << b << "\n";
-    // }
-    cout << coins << "\n";
+    cout << s << "\n";
 }
-
 int main()
 {
     // freopen("input.txt", "r", stdin);
@@ -92,7 +58,7 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tt = 1;
-    // cin >> tt;
+    cin >> tt;
     while (tt--)
     {
         Solve();
