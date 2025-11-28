@@ -1,8 +1,10 @@
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 using namespace std;
 #define ll long long
 #define pq priority_queue<pair<ll, pair<ll, ll>>, vector<pair<ll, pair<ll, ll>>>, greater<pair<ll, pair<ll, ll>>>>
 #define all(x) x.begin(), x.end()
+
+#define read(name, cnt) vector<ll>name(cnt);for(auto &e : name)cin >> e;
 struct custom_hash
 {
     static uint64_t splitmix64(uint64_t x)
@@ -34,11 +36,40 @@ long long elevar(long long a, long long b)
 }
 void Solve()
 {
+    int n; 
+    cin >> n;
+    vector<pair<int,int>>ope;
+    cout << n <<"\n";
+    for(int i =0;i < n;i++)
+    {
+        string s;cin >> s;
+        for(int j =0;j <n;j++)
+        {
+            if(s[j] == 'H')
+            {
+                ope.push_back({i,j});
+                break;
+            }
+        }
+        if(ope.size() < i+1)
+        {
+            
+            for(int j =0;j < n;j++)
+            {
+                cout << i+1 << " " << j+1 <<"\n";
+            }
+            while(++i < n)cin >> s;
+            return;
+        }
+    }
+    for(auto [a,b] : ope)cout << a+1 <<" " <<b+1 << "\n";
     
 }
 
 int main()
 {
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tt = 1;

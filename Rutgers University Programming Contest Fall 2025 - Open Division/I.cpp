@@ -34,6 +34,63 @@ long long elevar(long long a, long long b)
     }
     return r;
 }
+vector<pair<int,int>> Solve2(int nn, vector<string>&mm)
+{
+    int n; 
+    // cin >> n;
+    n = nn;
+    vector<pair<int,int>>ope;
+    // cout << n <<"\n";
+    for(int i =0;i < n;i++)
+    {
+        string s;//cin >> s;
+        s = mm[i];
+        for(int j =0;j <n;j++)
+        {
+            if(s[j] == 'H')
+            {
+                ope.push_back({i,j});
+                break;
+            }
+        }
+        if(ope.size() < i+1)
+        {
+            ope.clear();
+            for(int j =0;j < n;j++)
+            {
+                ope.push_back({i+1,j+1});
+                // cout << i+1 << " " << j+1 <<"\n";
+            }
+            return ope;
+        }
+    }
+    return ope;
+    for(auto [a,b] : ope)cout << a+1 <<" " <<b+1 << "\n";
+    
+}
+bool tests(){
+    ll n = (rand() ) % 1000 + 1;
+    vector<string>mat(n,string(n,'V'));
+    for(auto &s : mat)for(auto &e : s)if(rand()%2)e = 'H';
+    auto z = Solve2(n,mat);
+    bool ok = true;
+    char c = mat[z[0].first][z[0].second];
+    for(auto [a,b] : z) if(mat[a][b]!=c)ok = false;
+    vector<bool>k(n);
+    for(auto [a,b] : z)
+    {
+        if(c == 'H')k[a] = 1;
+        else k[b] = 1;
+    }
+    for(auto a : k)ok &= a;
+    if(!ok )
+    {
+        cout << n <<"\n";
+        for(auto s : mat) cout  << s << "\n";
+        return false;
+    } return true;
+}
+
 void Solve()
 {
     int n; 
@@ -60,7 +117,7 @@ void Solve()
         {
             if(mat[j][i] == 'V')
             {
-                ope2.push_back({i,j});
+                ope2.push_back({j,i});
                 break;
             }
         }        
@@ -77,9 +134,9 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tt = 1;
-    cin >> tt;
-    while (tt--)
+    // cin >> tt;
+    while (tests())
     {
-        Solve();
+        ;
     }
 }
