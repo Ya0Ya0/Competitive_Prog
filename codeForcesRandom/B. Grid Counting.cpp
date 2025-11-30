@@ -36,7 +36,7 @@ long long elevar(long long a, long long b, ll c = LONG_LONG_MAX-5)
     }
     return r;
 }
-const ll maxn = 1e5+20;
+const ll maxn = 1e6+20;
 ll mod = 998244353;
 vector<ll>factorial(maxn+5),inv(maxn+5);
 void Solve()
@@ -46,7 +46,7 @@ void Solve()
     read(ent, n);
     int ch = 0;
     ll ans =1;
-    for(int i = n;i >0;i--)
+    for(ll i = n;i >0;i--)
     {
         if(i*2 == n+1)ch++;
         else if ( i*2 <= n)ch+=2;
@@ -54,7 +54,7 @@ void Solve()
             cout << 0 <<"\n";return;
         }
         if(ent[i-1]){
-            ans = (ans * factorial[ch] * inv[ch-ent[i-1]] * inv[ent[i-1]])%mod;
+            ans = ((ans * factorial[ch])%mod * inv[ch-ent[i-1]]%mod * inv[ent[i-1]])%mod;
             ch-=ent[i-1];
         }
     }
@@ -67,12 +67,12 @@ void Solve()
 void init()
 {
     factorial[0] = 1;
-    for(int i =1;i <=maxn;i++)
+    for(ll i =1;i <=maxn;i++)
     {
         factorial[i] = (factorial[i-1] * i) % mod;
     }
     inv[maxn] = elevar(factorial[maxn],mod-2,mod);
-    for(int i = maxn-1;i>=0;i--)
+    for(ll i = maxn-1;i>=0;i--)
     {
         inv[i] = inv[i+1] * (i+1) %mod;
     }
