@@ -37,24 +37,15 @@ long long elevar(long long a, long long b)
 void init(){};
 void Solve()
 {
-    int n; 
-    cin >> n;
-    read(ent,n);
-    vector<vector<ll>>dp(n+5,vector<ll>(n+5));
-    ll mx = 0,mn = n+1;
-    for(int i =0;i < n;i++){
-        if(ent[i] == -1)
-            for(int j =1;j <=n;j++){
-                if(j > mn && j < mn){
-                    dp[i][j] += dp[i-1][j-1];
-                }
-            }
-        else{
-            mx = max(mx,ent[i]);
-            mn = min(mn,ent[i]);
-        }
+    int n,k; 
+    cin >> n >> k;
+    ll cur = 0;
+    ll sz = 0;
+    while(cur < k){
+        sz++;
+        cur+=sz-1;
     }
-    cout << max(dp[n][n],dp[n][])
+    // read(ent,n);
 }
 
 int main()

@@ -37,9 +37,55 @@ long long elevar(long long a, long long b)
 void init(){};
 void Solve()
 {
-    int n; 
-    cin >> n;
+    ll n,k; 
+    cin >> n >>k;
     read(ent,n);
+    sort(all(ent));
+    vector<ll>pre(n+1);
+    for(ll i =1;i <= n;i++){
+        pre[i] = pre[i-1] + ent[i-1];
+    }
+    ll ans = pre[n];
+    auto ck = [&](ll idx,ll r) -> ll{
+        ll s ;
+        ll mx = min(r*k,idx);
+        ll a = (pre[mx]);
+        ll b = (pre[min(n,idx + r+1)] - pre[idx+1]);
+        ll c = mx * ent[idx];
+        ll d =min(r,n-idx) * ent[idx];
+        s =-a  - b+c + d;
+        
+        return s ;
+    };
+    auto ck2 = [&](ll idx,ll r) -> ll{
+        ll s ;
+        ll mx = min(r*k,idx);
+        ll prev = min((r-1)*k,idx);
+        ll a = (pre[mx]) - pre[prev];
+        ll b = ent[min(n-1,idx + r)] ;
+        ll c = (mx-prev) * ent[idx];
+        
+        s =-a  - b+c + ent[idx];
+        
+        return s ;
+    };
+    for(ll i =1;i < n-1;i++){
+        ll lw = 1, hi = min(i,n-i-1)+1;
+        while(hi - lw > 1){
+            ll mid = hi + lw >>1;
+            ll z =ck2(i,mid);
+            // ans = max(ans,pre[n] + z);
+            if(z >0){
+                lw = mid;
+                
+            }else{
+                hi = mid;
+            }
+        }      
+        ans = max(ans,pre[n] + ck(i,lw));  
+    }
+    cout << ans <<"\n";
+
 }
 
 int main()

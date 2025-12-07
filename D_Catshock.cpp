@@ -54,7 +54,7 @@ void Solve()
     q.push(0);
     vector<int>even,odd;
     vector<pair<int,int>>ope;
-    int pos = 0;
+    int mov = 0;
     auto dfs = [&](auto self,int nd,int par)->bool{
         bool ok = false;
         // if(dis[nd]&1) odd.push_back(nd);
@@ -72,16 +72,17 @@ void Solve()
         //     ope.push_back({1,-1});
         // }
         int z = (dis[nd] & 1);
-        if(z == pos){
+        if(z == mov%2 && mov >= dis[nd]){
             ope.push_back({1,-1});
+            mov++;
         }
         ope.push_back({2,nd});
         ope.push_back({1,-1});
-        pos ^= 1;
+        mov ++;
         return ok;
     };
     dfs(dfs,0,-1);
-    ll par = (ope.size()+1) /2;
+    ll par = mov%2;
     if(!(par & 1)){
         ope.push_back({1,-1});
     }

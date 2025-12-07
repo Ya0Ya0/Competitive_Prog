@@ -37,35 +37,36 @@ long long elevar(long long a, long long b)
 void init(){};
 void Solve()
 {
-    int n; 
-    cin >> n;
-    read(ent,n);
-    vector<vector<ll>>dp(n+5,vector<ll>(n+5));
-    ll mx = 0,mn = n+1;
-    for(int i =0;i < n;i++){
-        if(ent[i] == -1)
-            for(int j =1;j <=n;j++){
-                if(j > mn && j < mn){
-                    dp[i][j] += dp[i-1][j-1];
-                }
-            }
-        else{
-            mx = max(mx,ent[i]);
-            mn = min(mn,ent[i]);
+    // int n; 
+    string s;
+    ll cur =50;
+    ll ans =0;
+    while(cin >> s){
+        int kk = cur!=0;
+        if(s[0] == 'R'){
+            cur+= stoi(s.substr(1));
+        }else{
+            cur-= stoi(s.substr(1));
         }
+        ans+= stoi(s.substr(1))/100;
+        if(cur > 100)ans++;
+        if(cur < 0 && kk)ans++;
+        cur+=100;
+        cur%= 100;
+        if(cur == 0)ans++;
     }
-    cout << max(dp[n][n],dp[n][])
+    cout << ans <<"\n";
 }
 
 int main()
 {
-    //freopen("input.txt", "r", stdin);
+    freopen("input.txt", "r", stdin);
     //freopen("output.txt", "w", stdout);
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     init();
     int tt = 1;
-    cin >> tt;
+    // cin >> tt;
     while (tt--)
     {
         Solve();

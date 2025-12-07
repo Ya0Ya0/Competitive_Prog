@@ -4,7 +4,10 @@ using namespace std;
 #define pq priority_queue<pair<ll, pair<ll, ll>>, vector<pair<ll, pair<ll, ll>>>, greater<pair<ll, pair<ll, ll>>>>
 #define all(x) x.begin(), x.end()
 
-#define read(name, cnt) vector<ll>name(cnt);for(auto &e : name)cin >> e;
+#define read(name, cnt)   \
+    vector<ll> name(cnt); \
+    for (auto &e : name)  \
+        cin >> e;
 struct custom_hash
 {
     static uint64_t splitmix64(uint64_t x)
@@ -34,33 +37,39 @@ long long elevar(long long a, long long b)
     }
     return r;
 }
-void init(){};
+void init() {};
 void Solve()
 {
-    int n; 
-    cin >> n;
-    read(ent,n);
-    vector<vector<ll>>dp(n+5,vector<ll>(n+5));
-    ll mx = 0,mn = n+1;
-    for(int i =0;i < n;i++){
-        if(ent[i] == -1)
-            for(int j =1;j <=n;j++){
-                if(j > mn && j < mn){
-                    dp[i][j] += dp[i-1][j-1];
-                }
-            }
-        else{
-            mx = max(mx,ent[i]);
-            mn = min(mn,ent[i]);
+    string s, t;
+    cin >> s >> t;
+    reverse(all(s));
+    map<char, ll> mp;
+    for (auto c : t)
+        mp[c]++;
+    for (auto c : s)
+    {
+        mp[c]--;
+        if(mp[c] < 0){
+            cout << "Impossible\n";return;
         }
     }
-    cout << max(dp[n][n],dp[n][])
+    string ss;
+    for(auto [c,cnt] : mp){
+        while( s.size()&&s.back() <= c){
+            ss+=s.back();
+            s.pop_back();
+        }
+        while(cnt--)
+            ss+=c;
+        
+    }
+    cout << ss <<"\n";
 }
 
 int main()
 {
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
+    // freopen("input.txt", "r", stdin);
+    // freopen("output.txt", "w", stdout);
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     init();

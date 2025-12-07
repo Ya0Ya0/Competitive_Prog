@@ -39,22 +39,17 @@ void Solve()
 {
     int n; 
     cin >> n;
-    read(ent,n);
-    vector<vector<ll>>dp(n+5,vector<ll>(n+5));
-    ll mx = 0,mn = n+1;
-    for(int i =0;i < n;i++){
-        if(ent[i] == -1)
-            for(int j =1;j <=n;j++){
-                if(j > mn && j < mn){
-                    dp[i][j] += dp[i-1][j-1];
-                }
-            }
-        else{
-            mx = max(mx,ent[i]);
-            mn = min(mn,ent[i]);
-        }
+    read(a,n);
+    read(b,n);
+    vector<pair<ll,ll>>dp(n);
+    dp[0] = {max(-a[0],b[0]),min(-a[0],b[0])};
+    for(int i =1;i <n;i++){
+        auto &[c,d] = dp[i];
+        auto &[aa,bb] = dp[i-1];
+        c = max(aa -a[i], b[i]-bb);
+        d = min(bb -a[i], b[i]-aa);
     }
-    cout << max(dp[n][n],dp[n][])
+    cout << dp[n-1].first <<"\n";
 }
 
 int main()
